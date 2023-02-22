@@ -130,7 +130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CannolBall: {fileID: 2900961494963516142, guid: fbad6b1354bcf4644902407244eba27b, type: 3}
-  Explosion: {fileID: 2634428186142465331, guid: 278738b0603b1d6468255435a98581f8, type: 3}
-  ForceShot: 2
-  TimeDestroyBall: 3
-  FireRate: 5
+  ForceShot: 5
+  TimeDestroyBall: 5
+  FireRate: 1.5
