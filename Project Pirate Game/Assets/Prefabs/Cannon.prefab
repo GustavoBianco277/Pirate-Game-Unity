@@ -132,4 +132,5 @@ MonoBehaviour:
   CannolBall: {fileID: 2900961494963516142, guid: fbad6b1354bcf4644902407244eba27b, type: 3}
   ForceShot: 5
   TimeDestroyBall: 5
-  FireRate: 1.5
+  FireRate: 3
+  CanShoot: 1

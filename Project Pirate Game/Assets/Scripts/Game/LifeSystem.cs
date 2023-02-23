@@ -6,11 +6,19 @@ using DG.Tweening;
 
 public class LifeSystem : MonoBehaviour
 {
+    [Tooltip("The ship is mine ? (Player)")]
+    public bool IsMine;
+    [Tooltip("Life of ship")]
     [SerializeField] float Life = 100;
+    [Tooltip("Duration to apply the damage of life bar")]
     [SerializeField] float Duration = 1;
+    [Tooltip("Life bar")]
     [SerializeField] Transform FillBar;
+    [Tooltip("Explosion effect")]
     [SerializeField] GameObject Explosion;
+    [Tooltip("Ship damage sprites")]
     [SerializeField] Sprite[] ShipStage;
+    [HideInInspector] public bool Destroyed; // Destroyed ship
 
     // privates
     private SpriteRenderer Ship;
@@ -26,7 +34,6 @@ public class LifeSystem : MonoBehaviour
         float LifeValue = Life / 100;
         LifeValue = LifeValue > 0 ? LifeValue : 0;
 
-        //FillBar.localScale = new Vector3(LifeValue, 1, 1);
         FillBar.parent.gameObject.SetActive(true);
         FillBar.DOScaleX(LifeValue, Duration);
         
@@ -52,9 +59,12 @@ public class LifeSystem : MonoBehaviour
     }
     private void DestroyShip()
     {
+        Destroyed = true;
         GameObject Obj = Instantiate(Explosion, transform.position, transform.rotation);
         Obj.transform.localScale = Vector3.one * 2;
         FillBar.parent.gameObject.SetActive(false);
-        GetComponent<ShipMove>().Active = false;
+
+        if (TryGetComponent<ShipMove>(out var Ship))
+            Ship.Active = false;
     }
 }

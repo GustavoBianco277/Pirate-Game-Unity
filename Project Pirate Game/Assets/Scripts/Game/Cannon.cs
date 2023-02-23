@@ -1,28 +1,39 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    [SerializeField] GameObject CannolBall;
-    [SerializeField] int ForceShot = 10;
-    [SerializeField] float TimeDestroyBall = 3;
-    [SerializeField] float FireRate = 5;
+    [Tooltip("Projectil of cannon")]
+    [SerializeField] private GameObject CannolBall;
+    [Tooltip("Cannon fire force")]
+    [SerializeField] private int ForceShot = 10;
+    [Tooltip("Time to destroy projectil")]
+    [SerializeField] private float TimeDestroyBall = 3;
+    [Tooltip("Seconds per cannon shot")]
+    [SerializeField] private float FireRate = 5;
+    [Tooltip("Cannon ready to fire")]
+    public bool CanShoot = true;
 
     //privates
-    private bool CanShoot = true;
-    private Transform LocalFire;
+    private Transform LocalFire;  //Local instantiate projectil
+    private LifeSystem Life;
+    private bool Active = true;
 
     private void Start()
     {
         LocalFire = transform.GetChild(0);
+        Life = transform.parent.GetComponent<LifeSystem>();
+        Active = transform.parent.GetComponent<ShipMove>() != null ? true : false;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && CanShoot)
+        if (Active)
         {
-            StartCoroutine(Shoot());
+            if (Input.GetMouseButtonDown(0) && CanShoot && !Life.Destroyed)
+            {
+                StartCoroutine(Shoot());
+            }
         }
     }
     public IEnumerator Shoot()
@@ -31,6 +42,7 @@ public class Cannon : MonoBehaviour
         GameObject Ball = Instantiate(CannolBall, LocalFire.position, LocalFire.rotation);
         
         Ball.GetComponent<Rigidbody2D>().AddForce(transform.right * ForceShot, ForceMode2D.Impulse);
+        Ball.GetComponent<Ball>().Owner = transform.parent;
         Destroy(Ball, TimeDestroyBall);
 
         yield return new WaitForSeconds(FireRate);

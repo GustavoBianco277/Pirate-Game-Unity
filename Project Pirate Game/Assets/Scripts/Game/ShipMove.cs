@@ -5,11 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ShipMove : MonoBehaviour
 {
+    [Tooltip("Main camera")]
     [SerializeField] Camera Cam;
+    [Tooltip("Key to move ship")]
     [SerializeField] KeyCode MoveKey = KeyCode.W;
+    [Tooltip("Ship speed")]
     [SerializeField] float Velocity = 50;
+    [Tooltip("Ship turning speed")]
     [SerializeField][Range(1, 100)] float VelocityAngular = 100;
-    [HideInInspector] public bool Active = true;
+
+    [HideInInspector] public bool Active = true; // Active move
 
     // privates
     private Rigidbody2D Rigid;

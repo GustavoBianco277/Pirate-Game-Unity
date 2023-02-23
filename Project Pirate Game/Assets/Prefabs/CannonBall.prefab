@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3171815576012960204}
   - component: {fileID: 1385743034875379099}
   - component: {fileID: 351236934472484132}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CannonBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &351236934472484132
 CircleCollider2D:
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3669951771107610101}
   - component: {fileID: 4308899377752649013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

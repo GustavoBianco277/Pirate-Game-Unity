@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FollowShip : MonoBehaviour
 {
-    [SerializeField] Transform Alvo;
+    [SerializeField] Transform Target;
     [SerializeField] float Hight = 1;
 
     void Update()
     {
-        Vector3 Pos = Alvo.position;
+        Vector3 Pos = Target.position;
         Pos.y -= -Hight;
 
         transform.position = Pos;
