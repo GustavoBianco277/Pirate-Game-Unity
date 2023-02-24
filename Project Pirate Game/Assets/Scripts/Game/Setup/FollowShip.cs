@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowShip : MonoBehaviour
 {
+    [Tooltip("Target to follow")]
     [SerializeField] Transform Target;
-    [SerializeField] float Hight = 1;
+
+    [Tooltip("Bar Height")]
+    [SerializeField] float Height = 1;
 
     void Update()
     {
         Vector3 Pos = Target.position;
-        Pos.y -= -Hight;
+        Pos.y -= -Height;
 
         transform.position = Pos;
     }

@@ -84,7 +84,7 @@ public class LifeSystem : MonoBehaviour
     {
         GameObject Obj = Instantiate(Explosion, transform.position, transform.rotation);
         Obj.transform.localScale = Vector3.one * 2;
-        //FillBar.parent.gameObject.SetActive(false);
+        FillBar.parent.gameObject.SetActive(false);
 
         DisableShip(true);
 
@@ -111,6 +111,7 @@ public class LifeSystem : MonoBehaviour
         if (!status)
         {
             FillBar.localScale = Vector3.one;
+            FillBar.parent.gameObject.SetActive(false);
             Life = 100;
             ShipStages();
         }

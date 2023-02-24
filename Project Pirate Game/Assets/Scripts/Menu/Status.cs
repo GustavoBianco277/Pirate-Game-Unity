@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class Status : MonoBehaviour
 {
-    public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI StatusText;
-    public int Score;
+    [SerializeField] private TextMeshProUGUI ScoreText; 
+    [SerializeField] private TextMeshProUGUI StatusText;
+    [HideInInspector] public int Score;
 
     // Privates
-    public Transform Player;
+    private Transform Player;
     private LifeSystem Life;
     private DurationMatch Match;
 
@@ -60,6 +60,7 @@ public class Status : MonoBehaviour
         Life.DisableShip(false);
         Match.ResetTime();
         Player.localPosition = Vector3.zero;
+        Score = 0;
     }
 
     public void BackMenu()

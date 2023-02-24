@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LocalSpawn : MonoBehaviour
 {
-    [Tooltip("Prefab that will Spawn")]
-    [SerializeField] private GameObject SpawnPrefab;
+    [Tooltip("Prefabs that will Spawn")]
+    [SerializeField] private GameObject[] SpawnPrefab;
 
     [Tooltip("Time to spawn")]
     [SerializeField] private float SpawnTime = 30;
@@ -24,6 +22,7 @@ public class LocalSpawn : MonoBehaviour
     {
         Match = FindObjectOfType<DurationMatch>();
         SpawnLocal = GameObject.Find("EnemyShips").transform;
+        SpawnTime = PlayerPrefs.GetInt("Spawntime") * 10;
         Spawner();
     }
 
@@ -45,20 +44,19 @@ public class LocalSpawn : MonoBehaviour
     private void OnBecameVisible()
     {
         IsVisible= true;
-        print("visible");
     }
 
     private void OnBecameInvisible()
     {
         IsVisible= false;
-        print("invisible");
     }
 
     private void Spawner()
     {
         if (Actived && !IsVisible)
         {
-            Instantiate(SpawnPrefab, SpawnLocal);
+            GameObject ship = Instantiate(SpawnPrefab[Random.Range(0,SpawnPrefab.Length)], transform.position, transform.rotation);
+            ship.transform.SetParent(SpawnLocal);
             Timer = 0;
         }
     }

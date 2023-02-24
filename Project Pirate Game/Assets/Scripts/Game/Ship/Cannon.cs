@@ -29,7 +29,7 @@ public class Cannon : MonoBehaviour
         LocalFire = transform.GetChild(0);
         Life = transform.parent.GetComponent<LifeSystem>();
         Match = FindObjectOfType<DurationMatch>();
-        Active = transform.parent.GetComponent<ShipMove>() != null ? true : false;
+        Active = transform.parent.GetComponent<ShipMove>() != null;
     }
 
     void Update()
