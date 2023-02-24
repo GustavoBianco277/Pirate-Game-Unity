@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System;
 
 public class Menu : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class Menu : MonoBehaviour
         if (!PlayerPrefs.HasKey("Duration"))
             PlayerPrefs.SetInt("Duration", 1);
     }
-    public void StartButton()
+    public void PlayButton()
     {
         SceneManager.LoadScene("Game");
     }

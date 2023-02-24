@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class ShipMove : MonoBehaviour
 {
     [Tooltip("Main camera")]
-    [SerializeField] Camera Cam;
-    [Tooltip("Key to move ship")]
-    [SerializeField] KeyCode MoveKey = KeyCode.W;
-    [Tooltip("Ship speed")]
-    [SerializeField] float Velocity = 50;
-    [Tooltip("Ship turning speed")]
-    [SerializeField][Range(1, 100)] float VelocityAngular = 100;
+    [SerializeField] private Camera Cam;
 
-    [HideInInspector] public bool Active = true; // Active move
+    [Tooltip("Key to move ship")]
+    [SerializeField] private KeyCode MoveKey = KeyCode.W;
+
+    [Tooltip("Ship speed")]
+    [SerializeField] private float Velocity = 50;
+
+    [Tooltip("Ship turning speed")]
+    [SerializeField][Range(0, 1)] private float VelocityAngular = 0.1f;
+
+    public bool Active = true; // Active move
 
     // privates
     private Rigidbody2D Rigid;
@@ -36,7 +37,7 @@ public class ShipMove : MonoBehaviour
             MousePos = Cam.ScreenToWorldPoint(MousePos);
 
             //transform.up = MousePos - transform.position;
-            transform.up = Vector3.Lerp(transform.up, MousePos - transform.position, Time.deltaTime * VelocityAngular / 10);
+            transform.up = Vector3.Lerp(transform.up, MousePos - transform.position, Time.deltaTime * VelocityAngular);
 
             if (Input.GetKey(MoveKey) && Rigid.velocity.magnitude < Velocity)
             {
